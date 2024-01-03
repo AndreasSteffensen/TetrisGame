@@ -6,14 +6,17 @@ let cols = 10;
 let board;
 let context;
 
-interface Block {
-    x: number;
-    y: number;
-}
+type Block = number[];
 
 type Shape = Block[];
 
-let blockL: Shape = [{ x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, { x: 3, y: 2 }];
+let L: Shape = [[2, 2], [ 2, 3 ], [ 2, 4 ], [ 3, 2 ]];
+let T: Shape = [[2, 2], [ 2, 3 ], [ 2, 4 ], [ 3, 3 ]];
+let Z: Shape = [[2, 2], [ 2, 3 ], [ 3, 3 ], [ 3, 4 ]];
+let RZ: Shape = [[3, 2], [ 2, 3 ], [ 3, 3 ], [ 2, 4 ]];
+let RL: Shape = [[2, 2], [ 2, 3 ], [ 2, 4 ], [ 3, 4 ]];
+let long: Shape = [[2, 2], [ 2, 3 ], [ 2, 4 ], [ 2, 5 ]];
+let square: Shape = [[2, 2], [ 2, 3 ], [ 3, 2 ], [ 3, 3 ]];
 
 window.onload = function() {
     board = document.getElementById("board");
@@ -29,11 +32,12 @@ function update() {
     context.fillRect(0, 0, board.width, board.height);
 
     context.fillStyle = "green";
-    drawShape(blockL);
+    drawShape(square);
+
 }
 
 function drawShape(s: Shape) {
     for (var item of s) {
-        context.fillRect((blocksize * item.y),(blocksize * item.x), blocksize, blocksize);
+        context.fillRect((blocksize * item[1]),(blocksize * item[0]), blocksize, blocksize);
     }
 }
